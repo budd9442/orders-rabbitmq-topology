@@ -12,6 +12,28 @@ spec:
     name: rabbitmq-prod
     namespace: rabbitmq
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: orders-svcuser-credentials
+  namespace: orders-system
+type: Opaque
+stringData:
+  username: orders-svcuser.rabbitmq.svc.cluster.local
+  passwordHash: ""
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: User
+metadata:
+  name: orders-svcuser
+  namespace: orders-system
+spec:
+  rabbitmqClusterReference:
+    name: rabbitmq-prod
+    namespace: rabbitmq
+  importCredentialsSecret:
+    name: orders-svcuser-credentials
+---
 apiVersion: rabbitmq.com/v1beta1
 kind: Permission
 metadata:

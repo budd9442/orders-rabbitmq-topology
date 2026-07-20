@@ -13,18 +13,6 @@ spec:
     namespace: rabbitmq
 ---
 apiVersion: rabbitmq.com/v1beta1
-kind: User
-metadata:
-  name: orders-svc-user
-  namespace: orders-system
-spec:
-  rabbitmqClusterReference:
-    name: rabbitmq-prod
-    namespace: rabbitmq
-  importCredentialsSecret:
-    name: orders-svc-credentials
----
-apiVersion: rabbitmq.com/v1beta1
 kind: Permission
 metadata:
   name: orders-svc-permission
@@ -33,7 +21,7 @@ spec:
   rabbitmqClusterReference:
     name: rabbitmq-prod
     namespace: rabbitmq
-  user: orders-svc-user.rabbitmq.svc.cluster.local
+  user: orders-svcuser.rabbitmq.svc.cluster.local
   vhost: vhost_orders
   permissions:
     configure: ".*"

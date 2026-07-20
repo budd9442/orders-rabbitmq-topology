@@ -5,10 +5,4 @@ namespace: orders-system
 resources:
 - namespace.yaml
 - topology.yaml
-- credentials.yaml
-- rbac.yaml
-- vault-issuer.yaml
-- client-cert.yaml
-- serviceaccount.yaml
-- deployment.yaml
-
+- vault-pki-secret.yaml
